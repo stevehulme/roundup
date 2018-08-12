@@ -3,8 +3,8 @@ package com.test.roundup.service;
 import com.test.roundup.domain.addmoney.AddMoney;
 import com.test.roundup.domain.addmoney.Amount;
 import com.test.roundup.util.HttpHeadersGenerator;
+import com.test.roundup.util.UUIDGenerator;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.HashMap;
-import java.util.UUID;
 
 @Service
 public class PutSavingsService {
@@ -21,15 +20,18 @@ public class PutSavingsService {
 
     private final HttpHeadersGenerator httpHeadersGenerator;
 
-    public PutSavingsService(RestTemplate restTemplate, HttpHeadersGenerator httpHeadersGenerator) {
+    private final UUIDGenerator uuidGenerator;
+
+    public PutSavingsService(RestTemplate restTemplate, HttpHeadersGenerator httpHeadersGenerator, UUIDGenerator uuidGenerator) {
         this.restTemplate = restTemplate;
         this.httpHeadersGenerator = httpHeadersGenerator;
+        this.uuidGenerator = uuidGenerator;
     }
 
     public void putSavings(String savingsGoalUUID, BigDecimal roundedupAmount) {
 
         var urlParams = new HashMap<String, String>();
-        var uuid = UUID.randomUUID().toString();
+        var uuid = uuidGenerator.getUUID();
         urlParams.put("savingsGoalUid", savingsGoalUUID);
         urlParams.put("transferUid", uuid);
 
