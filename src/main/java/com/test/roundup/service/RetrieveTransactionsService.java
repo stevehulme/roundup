@@ -2,8 +2,9 @@ package com.test.roundup.service;
 
 import com.test.roundup.domain.transaction.Transaction;
 import com.test.roundup.domain.transaction.TransactionResponse;
-import com.test.roundup.util.HttpEntityGenerator;
+import com.test.roundup.util.HttpHeadersGenerator;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,23 +16,28 @@ public class RetrieveTransactionsService {
 
     private final RestTemplate restTemplate;
 
-    private final HttpEntityGenerator httpEntityGenerator;
+    private final HttpHeadersGenerator httpHeadersGenerator;
 
-    public RetrieveTransactionsService(RestTemplate restTemplate, HttpEntityGenerator httpEntityGenerator) {
+    public RetrieveTransactionsService(RestTemplate restTemplate, HttpHeadersGenerator httpHeadersGenerator) {
         this.restTemplate = restTemplate;
-        this.httpEntityGenerator = httpEntityGenerator;
+        this.httpHeadersGenerator = httpHeadersGenerator;
     }
 
     public List<Transaction> getTransactions() {
 
-        var httpEntity = httpEntityGenerator.createHttpHeaders();
+        HttpEntity<TransactionResponse> getEntity = getHttpEntity();
 
         var rateResponse =
                 restTemplate.exchange("https://api-sandbox.starlingbank.com/api/v1/transactions",
-                        HttpMethod.GET, httpEntity, new ParameterizedTypeReference<TransactionResponse>() {
+                        HttpMethod.GET, getEntity, new ParameterizedTypeReference<TransactionResponse>() {
                         }).getBody();
         return rateResponse.getEmbeddedTransactions().getTransactions();
 
+    }
+
+    private HttpEntity<TransactionResponse> getHttpEntity() {
+        var httpHeaders = httpHeadersGenerator.createHttpHeaders();
+        return new HttpEntity<>(httpHeaders);
     }
 
 }

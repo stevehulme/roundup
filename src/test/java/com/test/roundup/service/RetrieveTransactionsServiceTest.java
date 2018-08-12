@@ -1,6 +1,6 @@
 package com.test.roundup.service;
 
-import com.test.roundup.util.HttpEntityGenerator;
+import com.test.roundup.util.HttpHeadersGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,7 +10,7 @@ class RetrieveTransactionsServiceTest {
     void test1() {
 
         RestTemplate restTemplate =  new RestTemplate();
-        HttpEntityGenerator httpHeadersGenerator = new HttpEntityGenerator();
+        HttpHeadersGenerator httpHeadersGenerator = new HttpHeadersGenerator();
         RetrieveTransactionsService retrieveTransactionsService = new RetrieveTransactionsService(restTemplate, httpHeadersGenerator);
         retrieveTransactionsService.getTransactions();
     }

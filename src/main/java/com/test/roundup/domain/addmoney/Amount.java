@@ -1,18 +1,19 @@
-package com.test.roundup.domain;
+package com.test.roundup.domain.addmoney;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 
-public class Currency {
+public class Amount {
 
-    private java.util.Currency currency;
+    private Currency currency;
 
     private BigDecimal minorUnits;
 
-    public java.util.Currency getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(java.util.Currency currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
