@@ -28,6 +28,6 @@ class RoundupCalculatorTest {
 
         var roundupValue = roundupCalculator.calculate(List.of(transaction1, transaction2, transaction3));
 
-        assertEquals(roundupValue, BigDecimal.valueOf(1.58));
+        assertEquals(BigDecimal.valueOf(1.58), roundupValue);
     }
 }
