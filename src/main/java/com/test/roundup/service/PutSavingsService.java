@@ -39,8 +39,6 @@ public class PutSavingsService {
 
         restTemplate.exchange("https://api-sandbox.starlingbank.com//api/v1/savings-goals/{savingsGoalUid}/add-money/{transferUid}",
                 HttpMethod.PUT, putEntity, String.class, urlParams);
-
-
     }
 
     private HttpEntity<AddMoney> getHttpEntity(BigDecimal roundedupAmount) {

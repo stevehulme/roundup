@@ -14,7 +14,7 @@ public class RoundupController {
     private final RoundupService roundupService;
 
     @GetMapping
-    public void roundup() {
-        roundupService.roundup();
+    public String roundup() {
+        return roundupService.roundup();
     }
 }

@@ -22,6 +22,9 @@ class RoundupCalculatorTest {
         when(transaction2.getAmount()).thenReturn(BigDecimal.valueOf(5.20));
         Transaction transaction3 = mock(Transaction.class);
         when(transaction3.getAmount()).thenReturn(BigDecimal.valueOf(0.87));
+        Transaction transaction4 = mock(Transaction.class);
+        when(transaction4.getAmount()).thenReturn(BigDecimal.valueOf(-2.56));
+
 
         var roundupValue = roundupCalculator.calculate(List.of(transaction1, transaction2, transaction3));
 

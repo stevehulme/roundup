@@ -11,7 +11,7 @@ import java.util.List;
 public class RoundupCalculator {
 
     public BigDecimal calculate(List<Transaction> transactions) {
-        return transactions.stream().map(this::getRoundupAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return transactions.stream().map(this::getRoundupAmount).filter(bigDecimal -> bigDecimal.compareTo(BigDecimal.ZERO) > 0).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     private BigDecimal getRoundupAmount(Transaction transaction) {
