@@ -37,7 +37,7 @@ public class PutSavingsService {
 
         HttpEntity<AddMoney> putEntity = getHttpEntity(roundedupAmount);
 
-        restTemplate.exchange("https://api-sandbox.starlingbank.com//api/v1/savings-goals/{savingsGoalUid}/add-money/{transferUid}",
+        restTemplate.exchange("https://api-sandbox.starlingbank.com/api/v1/savings-goals/{savingsGoalUid}/add-money/{transferUid}",
                 HttpMethod.PUT, putEntity, String.class, urlParams);
     }
 
@@ -46,7 +46,7 @@ public class PutSavingsService {
         var httpHeaders = httpHeadersGenerator.createHttpHeaders();
 
         var amount = new Amount();
-        amount.setMinorUnits(roundedupAmount);
+        amount.setMinorUnits(roundedupAmount.movePointRight(2));
         amount.setCurrency(Currency.getInstance("GBP"));
 
         var addMoney = new AddMoney();

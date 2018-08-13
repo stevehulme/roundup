@@ -48,7 +48,7 @@ public class CreateSavingsGoalService {
         var httpHeaders = httpHeadersGenerator.createHttpHeaders();
 
         SavingsGoal savingsGoal = new SavingsGoal();
-        savingsGoal.setName("test");
+        savingsGoal.setName("Test Savings Goal");
         savingsGoal.setCurrency(Currency.getInstance("GBP"));
 
         return new HttpEntity<>(savingsGoal, httpHeaders);
