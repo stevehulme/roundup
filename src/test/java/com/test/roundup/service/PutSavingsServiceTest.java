@@ -47,7 +47,7 @@ class PutSavingsServiceTest {
 
         putSavingsService.putSavings(SAVINGS_GOAL_UUID, BigDecimal.TEN);
 
-        verify(restTemplate).exchange(eq("https://api-sandbox.starlingbank.com//api/v1/savings-goals/{savingsGoalUid}/add-money/{transferUid}"),
+        verify(restTemplate).exchange(eq("https://api-sandbox.starlingbank.com/api/v1/savings-goals/{savingsGoalUid}/add-money/{transferUid}"),
                 eq(HttpMethod.PUT), any(HttpEntity.class), eq(String.class), eq(urlParams));
 
     }
