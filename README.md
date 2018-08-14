@@ -30,5 +30,6 @@ with the appropriate Auth headers set.
 * Error handling (Controller advice)
 * Refactor REST calls to remove duplicate code (Template pattern)
 * Implement refresh token
+* Concurrent round up calculation/create savings goal
 
 
